@@ -1,0 +1,32 @@
+/* static/css/styles.css */
+body {
+    background-color: #f0fdf4; /* Очень светлый салатовый фон */
+}
+
+/* Настраиваем кнопки и ссылки под наш стиль */
+.btn-primary, a {
+    background-color: #4c1d95; /* Темно-сиреневый */
+    border-color: #4c1d95;
+    color: #fff;
+}
+
+.btn-primary:hover, a:hover {
+    background-color: #37146e;
+    border-color: #37146e;
+}
+
+a {
+    color: #4c1d95;
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
+}
+
+.progress-bar {
+    background-color: #4c1d95 !important;
+}
+
+.card {
+    border: 1px solid #a7f3d0; /* Светло-зеленая рамка */
+}

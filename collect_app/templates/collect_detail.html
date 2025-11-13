@@ -1,0 +1,116 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+    {{ collect.title }} - Детали сбора
+{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row">
+        <!-- Левая колонка: Изображение, Прогресс и Сумма -->
+        <div class="col-lg-7">
+            <h1 class="mb-3">{{ collect.title }}</h1>
+
+            {% if collect.cover_image %}
+                <img src="{{ collect.cover_image.url }}" class="img-fluid rounded shadow-sm mb-4" alt="{{ collect.title }}">
+            {% else %}
+                <img src="https://placehold.co/800x400/f0fff0/4B0082?text=Сбор+средств" class="img-fluid rounded shadow-sm mb-4" alt="Изображение сбора">
+            {% endif %}
+
+            <div class="progress mb-3" style="height: 30px;">
+                <div class="progress-bar bg-success" role="progressbar"
+                     style="width: {{ collect.get_raised_percentage }}%;"
+                     aria-valuenow="{{ collect.get_raised_percentage }}"
+                     aria-valuemin="0"
+                     aria-valuemax="100">
+                    {{ collect.get_raised_percentage|floatformat:0 }}%
+                </div>
+            </div>
+
+            <p class="lead">Собрано <strong>{{ collect.raised_amount }} ₽</strong> из <strong>{{ collect.goal_amount|default:"неограниченной суммы" }} ₽</strong></p>
+        </div>
+
+        <!-- Правая колонка: Автор, Описание и Кнопка доната -->
+        <div class="col-lg-5">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title">Автор сбора</h5>
+                    <div class="d-flex align-items-center mb-3">
+                        {% if collect.author.profile.avatar %}
+                            <img src="{{ collect.author.profile.avatar.url }}" class="rounded-circle me-3" width="50" height="50" alt="Аватар">
+                        {% else %}
+                            <img src="{% static 'img/default_avatar.png' %}" class="rounded-circle me-3" width="50" height="50" alt="Аватар по умолчанию">
+                        {% endif %}
+                        <div>
+                            <strong>{{ collect.author.get_full_name|default:collect.author.username }}</strong>
+                        </div>
+                    </div>
+                    <hr>
+                    <h5 class="card-title">Описание</h5>
+                    <p class="card-text">{{ collect.description|linebreaksbr }}</p>
+
+                    {% if collect.is_active %}
+                        <div class="d-grid">
+                            <a href="{% url 'payment_demo' pk=collect.pk %}" class="btn btn-lg btn-success">❤️ Поддержать сбор</a>
+                        </div>
+                    {% else %}
+                        <div class="alert alert-secondary text-center" role="alert">
+                            Сбор завершён
+                        </div>
+                    {% endif %}
+                </div>
+                <div class="card-footer text-muted">
+                    Сбор заканчивается: {{ collect.end_at|date:"d F Y в H:i" }}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Секция комментариев -->
+    <div class="row mt-5">
+        <div class="col-lg-12">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h3 class="mb-4">💬 Комментарии ({{ collect.comments.count }})</h3>
+
+                    <!-- НАЧАЛО ИЗМЕНЕНИЙ: Форма для нового комментария -->
+                    {% if user.is_authenticated %}
+                        <form method="post" class="mb-4">
+                            {% csrf_token %}
+                            {{ comment_form.as_p }}
+                            <button type="submit" class="btn btn-primary">Отправить комментарий</button>
+                        </form>
+                    {% else %}
+                        <div class="alert alert-info">
+                            <a href="{% url 'login' %}?next={{ request.path }}">Войдите</a>, чтобы оставить комментарий.
+                        </div>
+                    {% endif %}
+                    <!-- КОНЕЦ ИЗМЕНЕНИЙ -->
+
+                    <hr>
+
+                    {% for comment in comments %}
+                        <div class="d-flex mb-3">
+                            <div class="flex-shrink-0">
+                                {% if comment.author.profile.avatar %}
+                                    <img src="{{ comment.author.profile.avatar.url }}" class="rounded-circle" width="50" height="50" alt="Аватар">
+                                {% else %}
+                                    <img src="{% static 'img/default_avatar.png' %}" class="rounded-circle" width="50" height="50" alt="Аватар по умолчанию">
+                                {% endif %}
+                            </div>
+                            <div class="ms-3 flex-grow-1">
+                                <div class="fw-bold">{{ comment.author.username }}</div>
+                                <p>{{ comment.text|linebreaksbr }}</p>
+                                <small class="text-muted">{{ comment.created_at|date:"d F Y в H:i" }}</small>
+                            </div>
+                        </div>
+                    {% empty %}
+                        <p>Комментариев пока нет. Будьте первым!</p>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

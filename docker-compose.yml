@@ -1,0 +1,41 @@
+services:
+  web:
+    build: .
+    command: gunicorn group_collects.wsgi:application --bind 0.0.0.0:8000
+    volumes:
+      - .:/app
+      - static_volume:/app/staticfiles
+      - media_volume:/app/media
+
+    env_file:
+      - .env
+    depends_on:
+      - db
+      - redis
+
+  db:
+    image: postgres:14
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    environment:
+      - POSTGRES_DB=${POSTGRES_DB}
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+
+  redis:
+    image: redis:6.2-alpine
+
+  nginx:
+    image: nginx:1.25.5-alpine
+    ports:
+      - "8000:80" # <- Внешний порт 8000, внутренний 80
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf # <- Путь к конфигу
+      - static_volume:/app/staticfiles # <- Доступ к общему шкафу со статикой
+    depends_on:
+      - web
+
+volumes:
+  postgres_data:
+  media_volume:
+  static_volume:

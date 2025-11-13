@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="bcf5493b-089d-40e4-8816-5d8615848258" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/PythonProject.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/collect_app/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/collect_app/admin.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/collect_app/api_urls.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/collect_app/apps.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/collect_app/forms.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/collect_app/management/commands/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/collect_app/management/commands/fill_db.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/collect_app/models.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/collect_app/serializers.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/collect_app/signals.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/collect_app/templates/archive.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/collect_app/templates/base.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/collect_app/templates/collect_close_form.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/collect_app/templates/collect_detail.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/collect_app/templates/collect_form.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/collect_app/templates/home.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/collect_app/templates/payment_demo.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/collect_app/templates/profile.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/collect_app/templates/registration/logged_out.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/collect_app/templates/registration/login.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/collect_app/templates/registration/signup.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/collect_app/tests.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/collect_app/urls.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/collect_app/utils.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/collect_app/views.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/group_collects/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/group_collects/asgi.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/group_collects/settings.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/group_collects/urls.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/group_collects/wsgi.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/manage.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/nginx/nginx.conf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/css/styles.css" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+        <option value="HTML File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 0
+}</component>
+  <component name="ProjectId" id="356aXkfS72nLgAA8c4sEXTKsIer" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;Python.tests.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+      <recent name="$PROJECT_DIR$/group_collect" />
+    </key>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-python-sdk-f69e5c277ee4-cbfc7b97e6b2-com.jetbrains.pycharm.community.sharedIndexes.bundled-PC-252.27397.106" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="bcf5493b-089d-40e4-8816-5d8615848258" name="Changes" comment="" />
+      <created>1762433016893</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1762433016893</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/collect_app/signals.py</url>
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>

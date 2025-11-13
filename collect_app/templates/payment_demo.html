@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% block title %}
+Поддержать сбор
+{% endblock %}
+{% block content %}
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h2 class="card-title text-center mb-4">🌿 Поддержать сбор</h2>
+                    <h4 class="text-center text-muted mb-4">"{{ collect.title }}"</h4>
+                    <p class="text-center">Автор: {{ collect.author.username }}</p>
+                    <hr>
+                    <p class="text-center lead">
+                        Это демонстрационная страница для пожертвования.
+                        На реальном проекте здесь была бы интеграция с платежной системой.
+                    </p>
+                    <form method="POST" action="">
+                        {% csrf_token %}
+                        <div class="mb-3">
+                            <label for="amount" class="form-label">Сумма пожертвования (в рублях)</label>
+                            <input type="number" class="form-control form-control-lg" id="amount" name="amount" placeholder="Например, 500" required>
+                        </div>
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-lg btn-custom">Перейти к оплате</button>
+                        </div>
+                    </form>
+                    <div class="text-center mt-3">
+                        <a href="{% url 'collect_detail' collect.pk %}">Вернуться к сбору</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

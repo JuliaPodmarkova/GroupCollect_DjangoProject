@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block title %}Мой профиль{% endblock %}
+{% block content %}
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-4 text-center">
+            {% if user.profile.avatar %}
+                <img src="{{ user.profile.avatar.url }}" class="img-fluid rounded-circle mb-3" alt="Аватар">
+            {% else %}
+                <img src="https://placehold.co/150x150/f0fff0/4B0082?text=Avatar" class="img-fluid rounded-circle mb-3" alt="Аватар">
+            {% endif %}
+            <h3>{{ user.username }}</h3>
+            <p class="text-muted">{{ user.email }}</p>
+        </div>
+        <div class="col-md-8">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h2 class="card-title">Редактировать профиль</h2>
+                    <form method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <fieldset class="form-group">
+                            <legend class="border-bottom mb-4">Информация</legend>
+                            {{ user_form.as_p }}
+                            {{ profile_form.as_p }}
+                        </fieldset>
+                        <div class="form-group mt-3">
+                            <button class="btn btn-custom" type="submit">Сохранить изменения</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

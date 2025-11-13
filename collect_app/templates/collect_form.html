@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+{% block title %}
+Создать новый сбор
+{% endblock %}
+{% block content %}
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h2 class="card-title text-center mb-4">📝 Создание нового сбора</h2>
+                    <form method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        {{ form.non_field_errors }}
+
+                        <p>{{ form.title.label_tag }} {{ form.title }} {{ form.title.errors }}</p>
+                        <p>{{ form.occasion.label_tag }} {{ form.occasion }} {{ form.occasion.errors }}</p>
+
+                        <div id="other-occasion-wrapper" style="display: none;">
+                            <p>{{ form.occasion_other_text.label_tag }} {{ form.occasion_other_text }} {{ form.occasion_other_text.errors }}</p>
+                        </div>
+
+                        <p>{{ form.description.label_tag }} {{ form.description }} {{ form.description.errors }}</p>
+                        <p>{{ form.goal_amount.label_tag }} {{ form.goal_amount }} {{ form.goal_amount.errors }}</p>
+                        <p>{{ form.cover_image.label_tag }} {{ form.cover_image }} {{ form.cover_image.errors }}</p>
+                        <p>{{ form.end_at.label_tag }} {{ form.end_at }} {{ form.end_at.errors }}</p>
+
+                        <hr>
+                        <h4 class="mt-4">Реквизиты для сбора</h4>
+                        <p>{{ form.payment_type.label_tag }} {{ form.payment_type }} {{ form.payment_type.errors }}</p>
+                        <p>{{ form.recipient_name.label_tag }} {{ form.recipient_name }} {{ form.recipient_name.errors }}</p>
+
+                        <div id="card-fields" style="display: none;">
+                            <p>{{ form.card_number.label_tag }} {{ form.card_number }} {{ form.card_number.errors }}</p>
+                        </div>
+
+                        <div id="account-fields" style="display: none;">
+                            <p>{{ form.bank_account_number.label_tag }} {{ form.bank_account_number }} {{ form.bank_account_number.errors }}</p>
+                            <p>{{ form.bank_name.label_tag }} {{ form.bank_name }} {{ form.bank_name.errors }}</p>
+                            <p>{{ form.bank_bik.label_tag }} {{ form.bank_bik }} {{ form.bank_bik.errors }}</p>
+                            <p>{{ form.bank_inn.label_tag }} {{ form.bank_inn }} {{ form.bank_inn.errors }}</p>
+                        </div>
+
+                        <div class="d-grid mt-4">
+                            <button type="submit" class="btn btn-lg btn-custom">Создать сбор</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const paymentTypeSelect = document.getElementById('id_payment_type');
+    const cardFields = document.getElementById('card-fields');
+    const accountFields = document.getElementById('account-fields');
+
+    const occasionSelect = document.getElementById('id_occasion');
+    const otherOccasionWrapper = document.getElementById('other-occasion-wrapper');
+
+    function togglePaymentFields() {
+        const selectedValue = paymentTypeSelect.value;
+        cardFields.style.display = selectedValue === 'card' ? 'block' : 'none';
+        accountFields.style.display = selectedValue === 'account' ? 'block' : 'none';
+    }
+
+    function toggleOccasionField() {
+        const selectedValue = occasionSelect.value;
+        otherOccasionWrapper.style.display = selectedValue === 'other' ? 'block' : 'none';
+    }
+
+    paymentTypeSelect.addEventListener('change', togglePaymentFields);
+    occasionSelect.addEventListener('change', toggleOccasionField);
+
+    // Initial calls to set the correct state on page load
+    togglePaymentFields();
+    toggleOccasionField();
+});
+</script>
+{% endblock %}

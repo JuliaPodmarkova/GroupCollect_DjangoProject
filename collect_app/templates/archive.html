@@ -1,0 +1,88 @@
+{% extends 'base.html' %}
+{% block title %}Архив сборов{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h1>Архив завершённых сборов</h1>
+    <a href="{% url 'home' %}" class="btn btn-lg btn-outline-secondary">К текущим сборам</a>
+</div>
+
+<div class="row">
+    {% for collect in collects %}
+    <div class="col-md-6 col-lg-4 mb-4">
+        <div class="card h-100 shadow-sm bg-light">
+            {% if collect.cover_image %}
+                <img src="{{ collect.cover_image.url }}" class="card-img-top" alt="{{ collect.title }}" style="height: 200px; object-fit: cover; filter: grayscale(80%);">
+            {% else %}
+                <img src="https://placehold.co/600x400/e9ecef/6c757d?text=Сбор+завершён" class="card-img-top" alt="{{ collect.title }}" style="height: 200px; object-fit: cover;">
+            {% endif %}
+            <div class="card-body d-flex flex-column">
+                <h5 class="card-title">{{ collect.title }}</h5>
+                <h6 class="card-subtitle mb-2 text-muted">Повод: {{ collect.get_full_occasion_display }}</h6>
+                {% if collect.close_reason %}
+                <div class="alert alert-secondary small p-2" role="alert">
+                    <strong>Причина завершения:</strong> {{ collect.close_reason }}
+                </div>
+                {% endif %}
+                <p class="card-text">{{ collect.description|truncatechars:100 }}</p>
+                <div class="mt-auto">
+                    <p><strong>Итог:</strong> Собрано {{ collect.raised_amount }} ₽ из {{ collect.goal_amount|default:"..." }} ₽</p>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <button class="btn btn-secondary" disabled>Сбор завершён</button>
+                        <a href="{% url 'collect_detail' pk=collect.pk %}" class="link-secondary">Подробнее</a>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer text-muted">
+                Завершён: {{ collect.end_at|date:"d F Y в H:i" }}
+            </div>
+        </div>
+    </div>
+    {% empty %}
+    <div class="col">
+        <p>В архиве пока нет завершённых сборов.</p>
+    </div>
+    {% endfor %}
+</div>
+
+{% if page_obj.has_other_pages %}
+<nav aria-label="Навигация по страницам" class="mt-4">
+    <ul class="pagination justify-content-center">
+
+        {% if page_obj.has_previous %}
+            <li class="page-item">
+                <a class="page-link" href="?page={{ page_obj.previous_page_number }}" aria-label="Предыдущая">
+                    <span aria-hidden="true">&laquo; Предыдущая</span>
+                </a>
+            </li>
+        {% else %}
+            <li class="page-item disabled">
+                <span class="page-link">&laquo; Предыдущая</span>
+            </li>
+        {% endif %}
+        {% for num in page_obj.paginator.page_range %}
+            {% if page_obj.number == num %}
+                <li class="page-item active" aria-current="page">
+                    <span class="page-link">{{ num }}</span>
+                </li>
+            {% else %}
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ num }}">{{ num }}</a>
+                </li>
+            {% endif %}
+        {% endfor %}
+        {% if page_obj.has_next %}
+            <li class="page-item">
+                <a class="page-link" href="?page={{ page_obj.next_page_number }}" aria-label="Следующая">
+                     <span aria-hidden="true">Следующая &raquo;</span>
+                </a>
+            </li>
+        {% else %}
+            <li class="page-item disabled">
+                <span class="page-link">Следующая &raquo;</span>
+            </li>
+        {% endif %}
+    </ul>
+</nav>
+{% endif %}
+{% endblock %}
